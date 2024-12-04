@@ -30,33 +30,29 @@ fn tokenize(input: &str) -> impl Iterator<Item = Token> + '_ {
 }
 
 #[aoc(day3, part1)]
-pub fn part1(input: &str) -> Option<u32> {
-    Some(
-        tokenize(input)
-            .filter(|t| matches!(t, Token::Mul((_, _))))
-            .map(|t| match t {
-                Token::Mul((l, r)) => l * r,
-                _ => unreachable!(),
-            })
-            .sum(),
-    )
+pub fn part1(input: &str) -> u32 {
+    tokenize(input)
+        .filter(|t| matches!(t, Token::Mul((_, _))))
+        .map(|t| match t {
+            Token::Mul((l, r)) => l * r,
+            _ => unreachable!(),
+        })
+        .sum()
 }
 
 #[aoc(day3, part2)]
-pub fn part2(input: &str) -> Option<u32> {
-    Some(
-        tokenize(input)
-            .fold((true, 0u32), |(enabled, acc), captures| {
-                if matches!(captures, Token::Do) {
-                    (true, acc)
-                } else if !enabled || matches!(captures, Token::Dont) {
-                    (false, acc)
-                } else if let Token::Mul((l, r)) = captures {
-                    (true, acc + l * r)
-                } else {
-                    unreachable!()
-                }
-            })
-            .1,
-    )
+pub fn part2(input: &str) -> u32 {
+    tokenize(input)
+        .fold((true, 0u32), |(enabled, acc), captures| {
+            if matches!(captures, Token::Do) {
+                (true, acc)
+            } else if !enabled || matches!(captures, Token::Dont) {
+                (false, acc)
+            } else if let Token::Mul((l, r)) = captures {
+                (true, acc + l * r)
+            } else {
+                unreachable!()
+            }
+        })
+        .1
 }

@@ -1,8 +1,8 @@
+use crate::common::parse_int;
 use aoc_runner_derive::aoc;
 use derive_more::TryInto;
 use itertools::Itertools;
 use logos::Logos;
-use crate::common::parse_int;
 
 #[derive(Logos, Debug, PartialEq, Eq, TryInto)]
 enum Token {
@@ -72,34 +72,30 @@ where
 }
 
 #[aoc(day2, part1)]
-pub fn solve_part1(input: &str) -> Option<u32> {
-    Some(
-        iterate_reports(input, |report| {
-            return_first_invalid_index(report.iter()).is_none() as u32
-        })
-            .sum(),
-    )
+pub fn solve_part1(input: &str) -> u32 {
+    iterate_reports(input, |report| {
+        return_first_invalid_index(report.iter()).is_none() as u32
+    })
+    .sum()
 }
 
 #[aoc(day2, part2)]
-pub fn part2(input: &str) -> Option<u32> {
-    Some(
-        iterate_reports(input, |report| {
-            match return_first_invalid_index(report.iter()) {
-                None => 1,
-                Some(first_invalid_index) => {
-                    (return_first_invalid_index(skip_index(&first_invalid_index, report.iter()))
-                        .is_none()
-                        || return_first_invalid_index(skip_index(
+pub fn part2(input: &str) -> u32 {
+    iterate_reports(input, |report| {
+        match return_first_invalid_index(report.iter()) {
+            None => 1,
+            Some(first_invalid_index) => {
+                (return_first_invalid_index(skip_index(&first_invalid_index, report.iter()))
+                    .is_none()
+                    || return_first_invalid_index(skip_index(
                         &(first_invalid_index + 1),
                         report.iter(),
                     ))
-                        .is_none()
-                        || return_first_invalid_index(skip_index(&0, report.iter())).is_none())
-                        as u32
-                }
+                    .is_none()
+                    || return_first_invalid_index(skip_index(&0, report.iter())).is_none())
+                    as u32
             }
-        })
-            .sum(),
-    )
+        }
+    })
+    .sum()
 }

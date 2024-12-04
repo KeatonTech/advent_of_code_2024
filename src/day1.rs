@@ -39,21 +39,21 @@ fn collect_pairs<'a, L: Extend<u32>, R: Extend<u32>>(left: &mut L, right: &mut R
 }
 
 #[aoc(day1, part1)]
-pub fn solve_part1(input: &str) -> Option<u32> {
+pub fn solve_part1(input: &str) -> u32 {
     let mut left = vec![];
     let mut right = vec![];
     collect_pairs(&mut left, &mut right, input);
     left.sort_unstable();
     right.sort_unstable();
-    Some(left.iter().zip(right.iter()).map(|(l, r)| l.abs_diff(*r)).sum())
+    left.iter().zip(right.iter()).map(|(l, r)| l.abs_diff(*r)).sum()
 }
 
 #[aoc(day1, part2)]
-pub fn solve_part2(input: &str) -> Option<u32> {
+pub fn solve_part2(input: &str) -> u32 {
     let mut left = vec![];
     let mut right: Counter<u32, u32> = Counter::new();
     collect_pairs(&mut left, &mut right, input);
-    Some(left.into_iter()
+    left.into_iter()
         .map(|n| *right.get(&n).unwrap_or(&0) * n)
-        .sum())
+        .sum()
 }

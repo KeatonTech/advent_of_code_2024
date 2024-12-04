@@ -39,7 +39,7 @@ fn collect_pairs<'a, L: Extend<u32>, R: Extend<u32>>(left: &mut L, right: &mut R
 }
 
 #[aoc(day1, part1)]
-pub fn solve_part1(input: &str) -> u32 {
+pub fn part1(input: &str) -> u32 {
     let mut left = vec![];
     let mut right = vec![];
     collect_pairs(&mut left, &mut right, input);
@@ -49,7 +49,7 @@ pub fn solve_part1(input: &str) -> u32 {
 }
 
 #[aoc(day1, part2)]
-pub fn solve_part2(input: &str) -> u32 {
+pub fn part2(input: &str) -> u32 {
     let mut left = vec![];
     let mut right: Counter<u32, u32> = Counter::new();
     collect_pairs(&mut left, &mut right, input);

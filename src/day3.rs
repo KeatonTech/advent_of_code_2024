@@ -30,7 +30,7 @@ fn tokenize(input: &str) -> impl Iterator<Item = Token> + '_ {
 }
 
 #[aoc(day3, part1)]
-pub fn solve_part1(input: &str) -> u32 {
+pub fn part1(input: &str) -> u32 {
     tokenize(input)
         .filter(|t| matches!(t, Token::Mul((_, _))))
         .map(|t| match t {
@@ -41,7 +41,7 @@ pub fn solve_part1(input: &str) -> u32 {
 }
 
 #[aoc(day3, part2)]
-pub fn solve_part2(input: &str) -> u32 {
+pub fn part2(input: &str) -> u32 {
     tokenize(input)
         .fold((true, 0u32), |(enabled, acc), captures| {
             if matches!(captures, Token::Do) {

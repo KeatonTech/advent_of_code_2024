@@ -80,7 +80,7 @@ pub fn solve_part1(input: &str) -> u32 {
 }
 
 #[aoc(day2, part2)]
-pub fn part2(input: &str) -> u32 {
+pub fn solve_part2(input: &str) -> u32 {
     iterate_reports(input, |report| {
         match return_first_invalid_index(report.iter()) {
             None => 1,

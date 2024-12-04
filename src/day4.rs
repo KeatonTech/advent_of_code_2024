@@ -4,10 +4,8 @@ use std::sync::atomic::AtomicU32;
 use std::{cmp, thread};
 use std::ops::Shr;
 
-const PART1_PATTERN_BYTES_FORWARD: u32 =
-    unsafe { std::mem::transmute::<[u8; 4], u32>([b'X', b'M', b'A', b'S']) };
-const PART1_PATTERN_BYTES_BACKWARD: u32 =
-    unsafe { std::mem::transmute::<[u8; 4], u32>([b'S', b'A', b'M', b'X']) };
+const PART1_PATTERN_BYTES_FORWARD: u32 = u32::from_be_bytes([b'X', b'M', b'A', b'S']);
+const PART1_PATTERN_BYTES_BACKWARD: u32 = u32::from_be_bytes([b'S', b'A', b'M', b'X']);
 
 const PART2_PATTERN: [[u8; 3]; 3] = [[b'M', 0, b'S'], [0, b'A', 0], [b'M', 0, b'S']];
 

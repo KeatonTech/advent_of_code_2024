@@ -6,3 +6,10 @@ where
 {
     Into::<&str>::into(lex.slice()).parse().ok()
 }
+
+pub fn parse_long<'a, T: Logos<'a>>(lex: &mut Lexer<'a, T>) -> Option<u64>
+where
+    &'a str: From<<<T as Logos<'a>>::Source as Source>::Slice<'a>>
+{
+    Into::<&str>::into(lex.slice()).parse().ok()
+}

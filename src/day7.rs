@@ -1,4 +1,3 @@
-use std::cmp::{max, min};
 use crate::common::parse_long;
 use aoc_runner_derive::aoc;
 use itertools::Itertools;
@@ -70,7 +69,7 @@ impl Equation {
 
     fn attempt<const L: usize>(&self, seq: &BitSlice<u32>) -> EquationAttemptOutcome {
         let mut acc = self.terms[0];
-        for i in (1..L) {
+        for i in 1..L {
             acc = if seq[i - 1] {
                 acc * self.terms[i]
             } else {

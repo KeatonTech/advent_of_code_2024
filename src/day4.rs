@@ -62,7 +62,7 @@ fn count_matches_in_iter<I>(iter: I) -> u32
 where
     I: Iterator<Item = u8>,
 {
-    iter.scan(0u32, |mut acc, next| {
+    iter.scan(0u32, |acc, next| {
         *acc = if cfg!(target_endian = "big") {
             acc.overflowing_shl(8).0 | (next as u32)
         } else {

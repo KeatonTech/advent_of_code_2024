@@ -18,7 +18,7 @@ fn parse_input(input: &str) -> Vec<FileSystemEntry> {
         .map(|c| c.to_digit(10).unwrap() as u8)
         .chain(once(0))
         .tuples()
-        .scan(NonZeroU16::MIN, |mut acc, (entry, blank)| {
+        .scan(NonZeroU16::MIN, |acc, (entry, blank)| {
             let file = FileSystemEntry {
                 id: Some(*acc),
                 length: entry,

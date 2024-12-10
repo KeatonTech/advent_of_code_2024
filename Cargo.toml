@@ -13,4 +13,3 @@ counter = "0.6.0"
 derive_more = { version = "1.0.0", features = ["try_into"] }
 lazy_static = "1.5.0"
 bitvec = "1.0.1"
-genawaiter = "0.99.1"
